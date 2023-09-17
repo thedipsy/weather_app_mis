@@ -10,7 +10,7 @@ class OpenWeatherMapClient {
   Future<WeatherResponse> getWeather(LocationData locationData) async {
     if (locationData.latitude != null && locationData.longitude != null) {
       final res = await http.get(Uri.parse(
-          '$apiEndpoint/weather?lat=${locationData.latitude}&long=${locationData.longitude}&units=metrics&appid=$apiKey'));
+          '$apiEndpoint/weather?lat=${locationData.latitude}&lon=${locationData.longitude}&units=metric&appid=$apiKey'));
       if (res.statusCode == 200) {
         return WeatherResponse.fromJson(jsonDecode(res.body));
       } else {
@@ -24,7 +24,7 @@ class OpenWeatherMapClient {
   Future<ForecastResponse> getForecast(LocationData locationData) async {
     if (locationData.latitude != null && locationData.longitude != null) {
       final res = await http.get(Uri.parse(
-          '$apiEndpoint/forecast?lat=${locationData.latitude}&long=${locationData.longitude}&units=metrics&appid=$apiKey'));
+          '$apiEndpoint/forecast?lat=${locationData.latitude}&lon=${locationData.longitude}&units=metric&appid=$apiKey'));
       if (res.statusCode == 200) {
         return ForecastResponse.fromJson(jsonDecode(res.body));
       } else {
